@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chirp-Chat: A Tweet Tweet Application</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+
+<body>
+
+    <label id="nickname_storage" style="display: none;"></label>
+    <label id="current_room" style="display: none;"></label>
+
+    <div id="nicknameSection">
+        <input type="text" id="nicknameInput" placeholder="Enter nickname">
+        <button id="setNicknameButton">Set Nickname</button>
+    </div>
+    <div id="roomSection" style="display: none;"> <!-- Hidden until nickname is set -->
+        <div id="nicknameDisplay"> <!-- Added nickname display -->
+        </div>
+        <img id="profilePicDisplay" src = './bird_images/image1.png' alt = 'bird_image'> <!-- Added nickname display -->
+
+        <input type="text" id="roomInput" placeholder="Enter room name">
+        <input type="password" id="passwordInput" placeholder="Enter password (optional for private room)">
+        <button id="createRoomButton">Create and join Room</button>
+
+
+        <button style="display: none;" id="joinRoomButton">Join Room</button>
+
+        <ul id="roomList"></ul>
+    </div>
+
+
+    <div id="chatSection" style="display: none;"> <!-- Hidden until room is joined or created -->
+        <div id="roomDisplay"></div>
+        <button id="leaveRoomButton">Leave Room</button>
+        <div id="chatLog"></div>
+        <form id="messageForm">
+            <input type="text" id="messageInput" placeholder="Enter message" autocomplete="off" autocapitalize="off" spellcheck="false">
+            <button type="submit">Send</button>
+        </form>
+        <div id="userList"></div>
+        <!-- Options for kicking and banning users can be added here if required -->
+    </div>
+
+    <!-- Whisper Modal -->
+    <div id="whisperModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span> <!--- used to have a semicolon at the end -->
+            <!--- used to have a semicolon at the end -->
+            <p>Whisper to User</p>
+            <input type="text" id="whisperInput" placeholder="Enter whisper message">
+            <button id="sendWhisper">Send Whisper</button>
+        </div>
+    </div>
+
+    <div id="getprofileimage">
+        <fieldset>
+            <label class="getprofileimage">Click to select a birdy boi:</label><br>
+            <div> <!-- figure out image paths-->
+                <div class="radio-container">
+                    <img src="./bird_images/image1.png" alt="bird-meme1">
+                    <label>
+                       Option 1: <input name="profileImage" type="radio" id="image1" value="image1.png" checked>
+                    </label>
+                </div>
+    
+                
+                <div class="radio-container">
+                    <img src="./bird_images/image2.png" alt="bird-meme2">
+                    <label>
+                        Option 2: <input name="profileImage" type="radio" id="image2" value="image2.png">
+                    </label>
+                </div>
+    
+    
+                <div class="radio-container">
+                    <img src="./bird_images/image3.png" alt="bird-meme3">
+                    <label>
+                        Option 3: <input name="profileImage" type="radio" id="image3" value="image3.png">
+                    </label>
+                </div>
+                
+    
+                
+                <div class="radio-container">
+                    <img src="./bird_images/image4.png" alt="bird-meme4">
+                    <label>
+                        Option 4: <input name="profileImage" type="radio" id="image4" value="image4.png">
+                    </label>
+                </div>
+              
+    
+                <div class="radio-container">
+                    <img src="./bird_images/image5.png" alt="bird-meme5">
+                    <label>
+                            
+                        Option 5: <input name="profileImage" type="radio" id="image5" value="image5.png">
+                    </label>
+                </div>
+               
+          
+                
+                <div class="radio-container">
+                    <img src="./bird_images/image6.png" alt="bird-meme6">
+                    <label>
+                            
+                        Option 6: <input name="profileImage" type="radio" id="image6" value="image6.png">
+                    </label>
+                </div>
+               
+                <div class="radio-container">
+                    <img src="./bird_images/image7.png" alt="bird-meme7">
+                    <label>
+                            
+                        Option 7: <input name="profileImage" type="radio" id="image7" value="image7.png">
+                    </label>
+                </div>
+    
+                <div class="radio-container">
+                    <img src="./bird_images/image8.png"  alt="bird-meme8">
+                    <label>
+                            
+                        Option 8: <input name="profileImage" type="radio" id="image8" value="image8.png">
+                    </label>
+                </div>
+    
+                <div class="radio-container">
+                    <img src="./bird_images/image9.png"  alt="bird-meme9">
+                    <label>
+                            
+                        Option 9: <input name="profileImage" type="radio" id="image9" value="image9.png">
+                    </label>
+                </div>
+               
+    
+    
+                <div class="radio-container">
+                    <img src="./bird_images/image10.png"  alt="bird-meme10">
+                    <label>
+                            
+                        Option 10: <input name="profileImage" type="radio" id="image10" value="image10.png">
+                    </label>
+                </div>
+               
+               
+                
+            </div>
+         </fieldset>
+        </div>
+    
+   
+
+        <div id="getbackground" >
+            <fieldset>
+                <label class="getbackground">Click to select a background color:</label><br>
+                <div> <!-- figure out image paths-->
+                    <div class="radio-container">
+                        <label>
+                           Default<input name="backgroundcolor" type="radio" id="default" value="default" checked>
+                        </label>
+                    </div>
+                    <div class="radio-container">
+                        <label>
+                            Black <input name="backgroundcolor" type="radio" id="black" value="black">
+                        </label>
+                    </div>
+                    
+                    <div class="radio-container">
+                        <label>
+                            Red <input name="backgroundcolor" type="radio" id="red" value="red">
+                        </label>
+                    </div>
+
+                    <div class="radio-container">
+                        <label>
+                            Light Blue <input name="backgroundcolor" type="radio" id="lightblue" value="lightblue">
+                        </label>
+                    </div>
+
+
+                    <div class="radio-container">
+                        <label>
+                            Green <input name="backgroundcolor" type="radio" id="green" value="green">
+                        </label>
+                    </div>
+
+                    <div class="radio-container">
+                        <label>
+                            Blue <input name="backgroundcolor" type="radio" id="blue" value="blue">
+                        </label>
+                    </div>
+
+                    <div class="radio-container">
+                        <label>
+                           Silver<input name="backgroundcolor" type="radio" id="silver" value="silver">
+                        </label>
+                    </div>
+        
+                    
+                    <div class="radio-container">
+                        <label>
+                            Purple <input name="backgroundcolor" type="radio" id="purple" value="purple">
+                        </label>
+                    </div>
+
+                    <div class="radio-container">
+                        <label>
+                            Orange <input name="backgroundcolor" type="radio" id="orange" value="orange">
+                        </label>
+                    </div>
+
+
+                    <div class="radio-container">
+                        <label>
+                            Gray <input name="backgroundcolor" type="radio" id="gray" value="gray">
+                        </label>
+                    </div>
+
+                    <div class="radio-container">
+                        <label>
+                            Brown <input name="backgroundcolor" type="radio" id="brown" value="brown">
+                        </label>
+                    </div>
+
+                    <button id="background_changer">Submit Background Change</button>
+
+                </div>
+                </fieldset>
+             
+   
+                
+                <script>
+                    document.getElementById('background_changer').addEventListener('click', function() {
+
+                        // Assuming you have two radio buttons with IDs 'default' and 'red'
+
+                            let defaultRadioButton = document.getElementById('default');
+                            let blackRadioButton = document.getElementById('black');
+                            let redRadioButton = document.getElementById('red');
+                            let lightblueRadioButton = document.getElementById('lightblue');
+                            let greenRadioButton = document.getElementById('green');
+                            let blueRadioButton = document.getElementById('blue');
+
+                            let silverRadioButton = document.getElementById('silver');
+                            let purpleRadioButton = document.getElementById('purple');
+                            let orangeRadioButton = document.getElementById('orange');
+                            let grayRadioButton = document.getElementById('gray');
+                            let brownRadioButton = document.getElementById('brown');
+
+                            if (defaultRadioButton.checked) {
+                               
+                                 // Code to change the background is  here
+                            document.body.style.backgroundColor = '#222';
+
+                            }
+                            else if (blackRadioButton.checked) {
+                              
+                              // Code to change the background is  here
+                            document.body.style.backgroundColor = 'black';
+                            }  
+                          else if (redRadioButton.checked) {
+                              
+                                 // Code to change the background is  here
+                            document.body.style.backgroundColor = 'red';
+                            }  
+                             else if (lightblueRadioButton.checked) {
+                              
+                            // Code to change the background is  here
+                            document.body.style.backgroundColor = 'lightblue';
+                            }
+                                
+                            else if (greenRadioButton.checked) {
+                                
+                            // Code to change the background is  here
+                            document.body.style.backgroundColor = 'green';
+                              
+                            }
+                            else if (blueRadioButton.checked) {
+                                
+                                // Code to change the background is  here
+                                document.body.style.backgroundColor = 'blue';
+                                  
+                            }
+                            else if (silverRadioButton.checked) {
+                               
+                               // Code to change the background is  here
+                          document.body.style.backgroundColor = 'silver';
+
+                          } else if (purpleRadioButton.checked) {
+                            
+                               // Code to change the background is  here
+                          document.body.style.backgroundColor = 'purple';
+                          }  
+                           else if (orangeRadioButton.checked) {
+                            
+                          // Code to change the background is  here
+                          document.body.style.backgroundColor = 'orange';
+                          }
+                              
+                          else if (grayRadioButton.checked) {
+                              
+                          // Code to change the background is  here
+                          document.body.style.backgroundColor = 'gray';
+                            
+                          }
+                          else if (brownRadioButton.checked) {
+                              
+                              // Code to change the background is  here
+                              document.body.style.backgroundColor = 'brown';
+                                
+                          }
+                            
+
+                });
+                </script>
+                 <footer>
+                    <p>&copy; 2023 Chirp-Chat A Tweet Tweet Application. All rights reserved.</p>
+                </footer>
+            </div>
+          
+         
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/bundle.js"></script>
+
+</body>
+
+</html>
